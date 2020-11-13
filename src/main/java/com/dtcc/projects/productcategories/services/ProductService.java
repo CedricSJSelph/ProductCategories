@@ -1,5 +1,4 @@
 package com.dtcc.projects.productcategories.services;
-import com.dtcc.projects.productcategories.models.Category;
 import com.dtcc.projects.productcategories.models.Product;
 import com.dtcc.projects.productcategories.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import java.util.List;
 @Service
 public class ProductService {
     private ProductRepository productRepository;
+
     @Autowired
     public ProductService(ProductRepository productRepository) {
         this.productRepository=productRepository;
@@ -18,7 +18,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product findById(Long id){
+    public Product findById(Integer id){
         return productRepository.findById(id).orElse(null);
     }
 
@@ -26,7 +26,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product updateProduct(Long id, String Name, String description, Double price){
+    public Product updateProduct(Integer id, String Name, String description, Double price){
         Product product= findById(id);
         if (Name!= null) {
             product.setProductName(Name);
@@ -45,11 +45,9 @@ public class ProductService {
         }
         return productRepository.save(product);
     }
-    public void deleteById(Long id){
+
+    public void deleteById(Integer id){
         productRepository.deleteById(id);
     }
-//    public List<Product> findByCategoriesNotContains(Category category) {
-//        return productRepository.findByCategoriesNotContains(category);
-//    }
 }
 

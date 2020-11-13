@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Date;
 import java.util.List;
 @Controller
 public class CategoryController {
@@ -32,13 +33,18 @@ public class CategoryController {
 
     @PostMapping(value = "/categories/createcategory")
     public String createCategory(@ModelAttribute("newcategory")Category cat){
-        categoryService.saveCategory(cat);
+        List<Category> temp = categoryService.showAll();
+        cat.setCreated_at(new Date());
+        boolean exists = false;
+        for(Category c:temp){
+            if(c.getValue().equals(cat.getValue())){
+                exists = true;
+            }
+        }
+        if(!exists){
+            categoryService.saveCategory(cat);
+        }
         return "redirect:/";
     }
 
-//@GetMapping("/products/newproduct")//.jsp file location/name
-//public String newprod(Model model) {
-//    model.addAttribute("newproduct", new Product()); //Creating and inserting in JSp
-//    return "products/newproduct";//Returns .jsp page
-//}
 }

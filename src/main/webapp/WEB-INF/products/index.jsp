@@ -24,6 +24,8 @@
 		</ul>
 		<h4> <a href="/products/newproduct">Add Product</a></h4>
 		<h4> <a href="/categories/newcategory">Add Category</a></h4>
+		<h1><font size = "3"> To update a product, please match item name with updated values.</font></h1>
+		<font size = "3"> Duplicate Categories now allowed!</font>
 	</div>  
 </body>
 </html>
