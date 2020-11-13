@@ -19,7 +19,7 @@
 		<h2>Choose a Category</h2>
 		<ul>
 		<c:forEach items="${ categories }" var="cat">
-			<li><a href="/${ cat.id }">${ cat.name }</a></li>		
+			<li><a href="/${ cat.categoryId }">${ cat.value }</a></li>
 		</c:forEach>
 		</ul>
 </body>

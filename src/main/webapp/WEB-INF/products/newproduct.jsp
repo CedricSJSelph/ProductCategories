@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
@@ -12,11 +12,12 @@
 
 </head>
 <body>
+
 <form:form method="POST" action="/products/createproduct" modelAttribute="newproduct">
 	<div class="form form-group">
-	<form:label path="name">Product Name:
-	<form:errors path="name"/>
-	<form:input path="name"/></form:label>
+	<form:label path="productName">Product Name:
+	<form:errors path="productName"/>
+	<form:input path="productName"/></form:label>
 	</div>
 	
 	<div class="form form-group">

@@ -17,9 +17,9 @@
 <body>
 <form:form method="POST" action="/categories/createcategory" modelAttribute="newcategory">
 	<div class="form form-group">
-	<form:label path="name">Category Name:
-	<form:errors path="name"/>
-	<form:input path="name"/></form:label>
+	<form:label path="value">Category Name:
+	<form:errors path="value"/>
+	<form:input path="value"/></form:label>
 	</div>
 	
 
