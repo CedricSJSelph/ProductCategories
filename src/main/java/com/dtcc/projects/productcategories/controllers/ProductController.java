@@ -1,6 +1,9 @@
 package com.dtcc.projects.productcategories.controllers;
 
+import com.dtcc.projects.productcategories.models.Association;
+import com.dtcc.projects.productcategories.models.Category;
 import com.dtcc.projects.productcategories.models.Product;
+import com.dtcc.projects.productcategories.services.CategoryService;
 import com.dtcc.projects.productcategories.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,8 @@ public class ProductController{
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping(value = "/")
     public String getIndexPage(Model model){
@@ -46,5 +51,17 @@ public class ProductController{
         }
 
         return "redirect:/";//Go back to main page
+    }
+
+    @RequestMapping(value="products/{id}",method=RequestMethod.GET)
+    public String showById(Model model,@PathVariable Integer id){
+        Product product = productService.findById(id);
+        List<Category> categoryList = categoryService.findByProductsNotContains(product);
+        Association association = new Association();
+
+        model.addAttribute("product",product);
+        model.addAttribute("association",association);
+        model.addAttribute("notInCategories",categoryList);
+        return "products/show";
     }
 }

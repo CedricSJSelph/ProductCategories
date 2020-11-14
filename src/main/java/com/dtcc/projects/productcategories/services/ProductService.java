@@ -1,4 +1,5 @@
 package com.dtcc.projects.productcategories.services;
+import com.dtcc.projects.productcategories.models.Category;
 import com.dtcc.projects.productcategories.models.Product;
 import com.dtcc.projects.productcategories.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,10 @@ public class ProductService {
 
     public void deleteById(Integer id){
         productRepository.deleteById(id);
+    }
+
+    public List<Product> findByCategoriesNotContains(Category category){
+        return productRepository.findByCategoriesNotContains(category);
     }
 }
 

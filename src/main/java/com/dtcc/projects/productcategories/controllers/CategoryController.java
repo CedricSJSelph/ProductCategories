@@ -1,5 +1,6 @@
 package com.dtcc.projects.productcategories.controllers;
 
+import com.dtcc.projects.productcategories.models.Association;
 import com.dtcc.projects.productcategories.models.Category;
 import com.dtcc.projects.productcategories.models.Product;
 import com.dtcc.projects.productcategories.services.CategoryService;
@@ -7,9 +8,7 @@ import com.dtcc.projects.productcategories.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +16,7 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+    @Autowired ProductService productService;
 
     @GetMapping(value = "/categories/category")
     public String getCategoryIndex(Model model){
@@ -47,4 +47,15 @@ public class CategoryController {
         return "redirect:/";
     }
 
+    @RequestMapping(value="categories/{id}",method= RequestMethod.GET)
+    public String showById(Model model, @PathVariable Integer id){
+        Category category=categoryService.findById(id);
+        List<Product> productList= productService.findByCategoriesNotContains(category);
+
+        Association association =new Association();
+        model.addAttribute("category",category);
+        model.addAttribute("association",association);
+        model.addAttribute("notInProducts",productList);
+        return "categories/show";
+    }
 }
