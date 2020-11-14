@@ -47,15 +47,15 @@ public class CategoryController {
         return "redirect:/";
     }
 
-    @RequestMapping(value="categories/{id}",method= RequestMethod.GET)
-    public String showById(Model model, @PathVariable Integer id){
-        Category category=categoryService.findById(id);
-        List<Product> productList= productService.findByCategoriesNotContains(category);
-
-        Association association =new Association();
-        model.addAttribute("category",category);
-        model.addAttribute("association",association);
-        model.addAttribute("notInProducts",productList);
-        return "categories/show";
-    }
+//    @RequestMapping(value="categories/{id}",method= RequestMethod.GET)
+//    public String showById(Model model, @PathVariable Integer id){
+//        Category category=categoryService.findById(id);
+//        List<Product> productList= productService.findByCategoriesNotContains(category);
+//
+//        Association association =new Association();
+//        model.addAttribute("category",category);
+//        model.addAttribute("association",association);
+//        model.addAttribute("notInProducts",productList);
+//        return "categories/show";
+//    }
 }

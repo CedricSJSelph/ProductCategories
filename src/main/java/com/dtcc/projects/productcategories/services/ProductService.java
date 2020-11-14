@@ -51,8 +51,8 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public List<Product> findByCategoriesNotContains(Category category){
-        return productRepository.findByCategoriesNotContains(category);
-    }
+//    public List<Product> findByCategoriesNotContains(Category category){
+//        return productRepository.findByCategoriesNotContains(category);
+//    }
 }
 

@@ -53,15 +53,15 @@ public class ProductController{
         return "redirect:/";//Go back to main page
     }
 
-    @RequestMapping(value="products/{id}",method=RequestMethod.GET)
-    public String showById(Model model,@PathVariable Integer id){
-        Product product = productService.findById(id);
-        List<Category> categoryList = categoryService.findByProductsNotContains(product);
-        Association association = new Association();
-
-        model.addAttribute("product",product);
-        model.addAttribute("association",association);
-        model.addAttribute("notInCategories",categoryList);
-        return "products/show";
-    }
+//    @RequestMapping(value="products/{id}",method=RequestMethod.GET)
+//    public String showById(Model model,@PathVariable Integer id){
+//        Product product = productService.findById(id);
+//        List<Category> categoryList = categoryService.findByProductsNotContains(product);
+//        Association association = new Association();
+//
+//        model.addAttribute("product",product);
+//        model.addAttribute("association",association);
+//        model.addAttribute("notInCategories",categoryList);
+//        return "products/show";
+//    }
 }
